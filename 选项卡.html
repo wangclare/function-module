@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		alfds
+	</title>
+    <style>
+    #div1 div{
+    	width:200px;
+    	height:200px;
+    	border:1px solid black;
+    	display:none;
+    }
+    #div1 .active{
+    	background:red;
+    }
+    
+    </style>
+    <script>
+    window.onload=function(){
+    	var oDiv = document.getElementById("div1");
+    	var oBtn = oDiv.getElementsByTagName("input");
+    	var aDiv = oDiv.getElementsByTagName("div");
+    	for(var i=0;i<oBtn.length;i++){
+    		oBtn[i].index=i;
+            //上面是为了获取当前选项的index
+    		oBtn[i].onclick=function(){
+    			for(var i=0;i<oBtn.length;i++){
+    				oBtn[i].className="";
+    				aDiv[i].style.display="none";
+    			}
+    		this.className='active';
+    		aDiv[this.index].style.display="block";
+            //上面的this.index是和上面的i相对应的
+    		}
+    	}
+    }
+    </script>
+</head>
+<body>
+<div id="div1">
+	<input class="active" type="button" value="education" />
+	<input type="button" value="training" />
+	<input type="button" value="admission" />
+	<input type="button" value="abroad" />
+	<div style="display:block;">1111</div>
+	<div>2222</div>
+	<div>333</div>
+	<div>4444</div>
+</div>
+</body>
+</html>
