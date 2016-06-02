@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>隔行变色</title>
+	<style>
+    
+    li{ 
+    	width:250px;
+    	color:white;
+    	background:#999;
+    	list-style-type:none;
+        font-size:15px;
+        padding:5px;
+        border:1px solid white;
+    }
+    .active{
+    	width:250px;
+    	color:#999;
+    	background:yellow;
+    	list-style-type:none;
+        font-size:15px;
+        padding:5px;
+        border:1px solid #ccc;
+    }
+    .focus{
+    	width:250px;
+    	color:yellow;
+    	background:blue;
+    	list-style-type:none;
+        font-size:15px;
+        padding:5px;
+        border:1px solid #ccc;
+    }
+	</style>
+	<script>
+    	window.onload=function(){
+    	var oLi = document.getElementsByTagName('li');
+    	var oBtn = document.getElementById('btn');
+    	oBtn.onclick=function(){
+    	for(var i=0;i<oLi.length;i++){
+    		if(i%2){
+            oLi[i].className='active';
+    		}
+    		else{
+    		oLi[i].className='focus';
+    		}
+    	}
+    }
+}
+	</script>
+</head>
+<body>
+	<div id="container">
+		<ul class="ori">
+			<li>"Today is Monday!"</li>
+			<li>"Today is Tuesday!"</li>
+			<li>"Today is Wednesday!"</li>
+			<li>"Today is Thursday!"</li>
+			<li>"Today is Friday!"</li>
+			<li>"Today is Saturday!"</li>
+			<li>"Today is Sunday!"</li>
+		</ul>
+		<input type="button" id="btn" value="change color" />
+	</div>
+
+</body>
+</html>
+    
