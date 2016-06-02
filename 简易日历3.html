@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>calendar</title>
+    <style>
+   #container{
+   	width:200px;
+   	border:1px solid black;
+   	background:#999;
+   	margin:15px;
+    height:300px;
+   }
+   a{
+   	float:left;
+   	width:50px;
+   	height:50px;
+   	margin:5px;
+   	background:black;
+   	color:yellow;
+   	text-align:center;
+   	font-size:40px;
+   	text-decoration:none;
+   }
+   #container div{
+   	clear:both;
+   	border:1px solid black;
+   	background:yellow;
+   	color:#999;
+   	display:block;
+   	height:100px;
+   }
+   .active{
+    float:left;
+    width:50px;
+    height:50px;
+    margin:5px;
+    text-align:center;
+    font-size:40px;
+    text-decoration:none;
+    background:#ccc;
+    color:white;
+   }
+    </style>
+    <script>
+    window.onload=function(){
+      var arr=["Today is Monday!","Today is Tuesday!","Today is Wednesday!","Today is Thursday!","Today is Friday!","Today is Saturday!","Today is Sunday!"]
+    	var oDiv = document.getElementById("container");
+    	var oBtn = oDiv.getElementsByTagName("a");
+      var aDiv = oDiv.getElementsByTagName('div')[0];
+    	//var aDiv = document.getElementById('text');
+      //开始的时候这部分代码是
+      //var aDiv = oDiv.getElementById('text');
+      //是不行的，为什么呢？难道说不可以有两个ID这个原因吗？改成
+      //var aDiv = oDiv.getElementsByTagName('div'),就可以了
+      //改成var aDiv = document.getElementById('text')也是可以的，应该是
+      //document则可以用任意多个id,要是嵌套的就可以只有一个id。
+    	for(var i=0;i<oBtn.length;i++){
+           oBtn[i].index=i;
+            oBtn[i].onmouseover=function(){
+              for(var i=0;i<oBtn.length;i++){
+                oBtn[i].className=' ';
+              }
+              this.className='active';
+              //优先级问题一定要注意。
+              //this.style.color="white";
+              //this.style.background="yellow";
+            	aDiv.innerHTML='<p>'+arr[this.index]+'</p>';
+            }
+            oBtn[i].onmouseout=function(){
+              this.className=' ';
+            	aDiv.innerHTML='';
+            }
+    	}
+    }
+    </script>
+</head>
+<body>
+	<div id="container">
+		<a href="javascript:," >1</a>
+		<a href="javascript:," >2</a>
+		<a href="javascript:," >3</a>
+		<a href="javascript:," >4</a>
+		<a href="javascript:," >5</a>
+		<a href="javascript:," >6</a>
+		<a href="javascript:," >7</a>
+		<div id="text"></div>
+		
+	</div>
+</body>
+</html>
+
