@@ -40,6 +40,7 @@
     	var oImg = document.getElementById("day");
     	function tick(){
     		var oDate = new Date();
+            //注意getMonth()的特殊性。获取的小1，需要手动加1，为正确的月数。
     	    var str = oDate.getFullYear()+toDou(oDate.getMonth()+1)+toDou(oDate.getDate())+toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds()); 
     	/*var str = oDate.getFullYear()+''+oDate.getMonth()+oDate.getDate()+oDate.getHours()+oDate.getMinutes()+oDate.getSeconds()+oDate.getDay(); */
        //alert(str);
@@ -47,6 +48,7 @@
     	for(var i=0;i<aImg.length-1;i++){
     		aImg[i].src=str.charAt(i)+'.png';
     	}
+        //getDay()==0时对应的是星期天
     	if(oDate.getDay()==0){
     		oImg.src="sunday.png";
     	}else if(oDate.getDay()==1){
