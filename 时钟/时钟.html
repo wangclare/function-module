@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>定时器</title>
+	<style>
+    #container{
+    height:230px;
+    width:750px;
+    margin:50px;
+    background:#999;
+    border:5px solid #ccc;
+    }
+    .time{
+    	width:50px;
+    	height:77px;
+    	padding:20px 5px 10px 20px;
+    }
+    .date{
+    	padding:20px 0px 10px 35px;
+    	width:40px;
+    	height:47px;
+    }
+    #day{
+    	padding:45px 10px 10px 20px;
+    	height:67px;
+    	width:160px;
+    }
+	</style>
+	<script>
+	function toDou(n){
+		if(n<10){
+		   return '0'+n;
+		}else{
+			return ''+n;
+		}
+
+	}
+    window.onload = function(){
+    	var aImg = document.getElementsByTagName("img");
+    	var oImg = document.getElementById("day");
+    	function tick(){
+    		var oDate = new Date();
+    	    var str = oDate.getFullYear()+toDou(oDate.getMonth()+1)+toDou(oDate.getDate())+toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds()); 
+    	/*var str = oDate.getFullYear()+''+oDate.getMonth()+oDate.getDate()+oDate.getHours()+oDate.getMinutes()+oDate.getSeconds()+oDate.getDay(); */
+       //alert(str);
+    	//var str='123412211645220';
+    	for(var i=0;i<aImg.length-1;i++){
+    		aImg[i].src=str.charAt(i)+'.png';
+    	}
+    	if(oDate.getDay()==0){
+    		oImg.src="sunday.png";
+    	}else if(oDate.getDay()==1){
+    		oImg.src="monday.png";
+    	}else if(oDate.getDay()==2){
+            oImg.src=="tuesday.png";
+    	}else if(oDate.getDay()==3){
+    		oImg.src="wednesday.png";
+    	}else if(oDate.getDay()==4){
+    		oImg.src="thursday.png";
+    	}else if(oDate.getDay()==5){
+    		oImg.src="friday.png";
+    	}else{
+    		oImg.src="saturday.png";
+    	}
+    }
+    setInterval(tick,1000);
+    tick();
+  };
+	</script>
+</head>
+<body>
+	<div id="container" style="color:black;font-size:35px;">
+		<img class="date" src="2.png" />
+		<img class="date" src="0.png" />
+		<img class="date" src="1.png" />
+		<img class="date" src="6.png" />
+		.
+		<img class="date" src="0.png" />
+		<img class="date" src="6.png" />
+		.
+		<img class="date" src="2.png" />
+		<img class="date" src="1.png" />
+		<br/>
+		<img class="time" src="0.png" />
+		<img class="time" src="0.png" />
+		:
+		<img class="time" src="0.png" />
+		<img class="time" src="0.png" />
+		:
+		<img class="time" src="0.png" />
+		<img class="time" src="0.png" />
+        <img  id="day" src="monday.png" />
+	</div>
+</body>
+</html>
