@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计时器</title>
+	<style>
+    #tips{
+    	color:red;
+    	background:#ecebeb;
+    	width:200px;
+    	border:1px solid #999;
+    	margin-top:10px;
+    	margin-left:200px;
+    	border-radius:10px;
+    	display:none;
+    }
+    #txt{
+    	width:300px;
+    	height:100px;
+        display:block;
+        border:1px solid #999;
+        background:#ccc;
+    }
+    </style>
+	<script>  
+    window.onload=function(){
+    	var txt=document.getElementById("txt");
+    	var tips=document.getElementById("tips");
+        var timer;
+    	txt.onmouseover=tips.onmouseover=function(){
+           clearTimeout(timer);
+           tips.style.display="block";
+    	};
+    	txt.onmouseout=tips.onmouseout=function()
+        {  timer=setTimeout(function()
+            {
+                tips.style.display="none";
+            },1000);
+    	    //setTimeOut(tips.style.display="none",1000);
+    	};
+       
+    }
+	</script>
+</head>
+<body>
+	<div id="txt"></div>
+	<div id="tips">Please do not leave this blank!</div>
+</body>
+</html>
+
