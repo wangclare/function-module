@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>轮播</title>
+  <style>
+  *{
+  	margin:0;
+  	padding:0;
+  }
+  #container{
+  	background:red;
+  	width:712px;
+  	height:142px;
+  	position:relative;
+  	margin:270px 0 0 270px;
+    overflow:hidden;
+    border:2px solid black;
+  }
+  #container ul{
+  	position:absolute;
+  	list-style:none;
+  	top:4px;
+  	left:5px;
+  }
+  #container ul li{
+  	width:178px;
+  	height:134px;
+  	float:left;
+  }
+  #left{
+    margin:30px auto auto 80px;
+    width:100px;
+   float:left;
+  }
+  #right{
+    margin:-115px 250px auto auto;
+    width:100px;
+    float:right;
+  }
+  #txt{
+    font-size:20px;
+    font-family:Georgia,Serif;
+    margin:30px auto auto 550px;
+  }
+  </style>
+  <script>
+  //图像本身大小是不是影响效果？？和副本做对比
+window.onload=function(){
+	var oDiv =document.getElementById('container');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+  var oLB=document.getElementById('left');
+  var oRB=document.getElementById('right');
+  var tDiv=document.getElementById('txt');
+  var tTxt=tDiv.getElementsByTagName('input')[0];
+  var speed=parseInt(tTxt.innerText);
+  //这里可不可以用prompt方法跳出输入想要的速度呢？
+  //speed=prompt('speed:')这样操作不行，移动不了，或者一直闪烁，为什么呢？
+  oUl.innerHTML+=oUl.innerHTML;
+  //这里为什么一定要是offsetWidth,为什么oUl.style.left就不行？
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+  function move(){
+                if(oUl.offsetLeft<-oUl.offsetWidth/2)
+                {
+                  oUl.style.left=0;
+                }
+                //这里两个if是连用的，任何一个if都没有和else连用，这种用法可以嘛？？
+                if(oUl.offsetLeft>0){
+                  oUl.style.left=-oUl.offsetWidth/2+'px';
+                }
+              oUl.style.left=oUl.offsetLeft+speed+'px';
+              }
+  var timer=setInterval(move,30);
+  //这里是把整个setInterval设置成timer,因为下面clear的是整个运动过程，如果没有setInterval使这//个function里面的内容动起来，这个clear本来就是不符存在的
+
+ oUl.onmouseover=function(){
+    clearInterval(timer);
+ }
+ //为什么这里用oDiv,oUl都可以，但是aLi怎么就不行呢
+ oUl.onmouseout=function(){
+                timer=setInterval(move,30);
+                //这里为什么不能只放timer呢？为什么后面等于的也要有呢？
+ }
+ oLB.onmouseover=function(){
+  oLB.src='gl.png';
+  speed=parseInt('-'+speed);
+ }
+ oLB.onmouseout=function(){
+  oLB.src='left.png';
+ }
+oRB.onmouseover=function(){
+  oRB.src='gr.png';
+  speed=speed;
+ }
+ oRB.onmouseout=function(){
+  oRB.src='right.png';
+ }
+
+}
+  </script>
+</head>
+<body>
+ <img src='left.png' id='left' />
+	<div id="container">
+		<ul>
+      <li><img src='zjj2.png' /></li>
+      <li><img src='zjj3.png' /></li>
+      <li><img src='zjj5.png' /></li>
+      <li><img src='zjj6.png' /></li>
+    </ul>
+	</div>
+   <img id='right' src='right.png' />
+   <div id='txt'>speed:<input type='text' />
+    </div>
+</body>
+</html>
