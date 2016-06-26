@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>表格</title>
+	<style>
+    #tbl{
+     width:500px;
+     text-align: center
+    }
+    thead{
+    	background:blue;
+    	line-height:30px;
+    	opacity:0.5;
+    	color:white;
+    }
+	</style>
+	<script>
+    window.onload=function(){
+    	var oTal=document.getElementById('tbl');
+    	var aName=document.getElementById('name');
+    	var aBtn=document.getElementById('btn');
+        aBtn.onclick=function(){
+        	for(var i=0;i<oTal.tBodies[0].rows.length;i++){
+        		var oTab=oTal.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+        		var oTxt=aName.value.toLowerCase();
+        		var arr=oTxt.split(' ');
+        		//alert(oTab.search(oTxt))//;这里为什么当标签内容为空时search后的值为0呢？然后背景色全变了
+        		oTal.tBodies[0].rows[i].style.background=' ';
+        		for(var j=0;j<arr.length;j++){
+        			if(oTab.search(arr[j])!=-1){
+                	//search为模糊搜索，注意用法
+
+                       oTal.tBodies[0].rows[i].style.background='yellow';
+                      }
+                      /*else{
+                      	oTal.tBodies[0].rows[i].style.background='';
+                      }这里如果把oTal.tBodies[0].rows[i].style.background='yellow'
+                      放到这里的话，j循环里如果有好几个元素，例如ro yv cl那样的话只有最后一个元素对应的行会变色，因为只要不符合这个的背景色因为这个else全部变成无色的，但是在拆分数组的时候还需要首先把背景色变成无色，所以需要把这个单独踢出来放在循环之前，这样所有背景色都是无色的，再进行后续的操作保证j循环的每一个对应元素的背景色全部都是可以变色的*/
+        		}
+                
+            
+           }
+        }
+
+    }
+	</script>
+</head>
+<body>
+	name:<input type='text' id='name' /><input type='button' value='search' id='btn' />
+	<table id='tbl' border="1">
+		<thead>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Age</td>
+			<td>Extra</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Clare</td>
+				<td>18</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Yvong</td>
+				<td>19</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Applae</td>
+				<td>68</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Jack</td>
+				<td>23</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>Rose</td>
+				<td>21</td>
+				<td></td>
+			</tr>
+		<tbody>
+	</table>
+</body>
+</html>

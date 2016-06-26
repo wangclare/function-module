@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>表格</title>
+	<style>
+    #tbl{
+     width:500px;
+     text-align:center;
+    }
+    thead{
+    	background:blue;
+    	line-height:30px;
+    	opacity:0.5;
+    	color:white;
+    }
+	</style>
+	<script>
+    window.onload=function(){
+    	var oTal=document.getElementById('tbl');
+    	var aName=document.getElementById('name');
+    	var aAge=document.getElementById('age');
+    	var aBtn=document.getElementById('btn');
+        var id=oTal.tBodies[0].rows.length+1;
+        //这里怎么理解+1.理解成var i=0;i++;i<xx.length就可以了，i=0开始
+        aBtn.onclick=function(){
+        	var oTr=document.createElement('tr');
+        	var oTd=document.createElement('td');
+        	//为什么oTd1,oTd2,oTd3就不行，而全部是oTd就可以呢？
+        	oTd.innerHTML=id++;
+        	oTr.appendChild(oTd);
+        	var oTd=document.createElement('td');
+        	//oTd2.innerHTML=aName.innerText;为什么这里innerText不行？
+        	oTd.innerHTML=aName.value;
+        	oTr.appendChild(oTd);
+        	var oTd=document.createElement('td');
+        	oTd.innerHTML=aAge.value;
+        	oTr.appendChild(oTd);
+        	var oTd=document.createElement('td');
+        	oTd.innerHTML='<a href="javascript:;">delete</a>';
+            oTd.getElementsByTagName('a')[0].onclick=function(){
+            //this.parentNode.parentNode.style.display='none';也行？
+             oTal.tBodies[0].removeChild(this.parentNode.parentNode);
+            }
+        	oTr.appendChild(oTd);
+        	oTal.tBodies[0].appendChild(oTr);	
+        }
+       
+    }
+	</script>
+</head>
+<body>
+	name:<input type='text' id='name' />
+	age:<input type='text' id='age' />
+	<input type='button' value='append' id='btn' />
+	<table id='tbl' border="1">
+		<thead>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Age</td>
+			<td>Extra</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Clare</td>
+				<td>18</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Yvong</td>
+				<td>19</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Apple</td>
+				<td>68</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Jack</td>
+				<td>23</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>Rose</td>
+				<td>21</td>
+				<td></td>
+			</tr>
+		<tbody>
+	</table>
+</body>
+</html>

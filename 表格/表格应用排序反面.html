@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>表格</title>
+	<style>
+    #tbl{
+     width:500px;
+     text-align: center
+    }
+    thead{
+    	background:blue;
+    	line-height:30px;
+    	opacity:0.5;
+    	color:white;
+    }
+	</style>
+	<script>
+    window.onload=function(){
+    	var oTal=document.getElementById('tbl');
+    	var aBtn=document.getElementById('btn');
+    	var arr=[];
+        aBtn.onclick=function(){
+        	for(var i=0;i<oTal.tBodies[0].rows.length;i++){
+        		arr[i]=oTal.tBodies[0].rows[i].cells[0];
+        	}
+        	//用sort()方法进行排序，想用sort()方法就必须转化成数组，
+        		arr.sort(function(td1,td2){
+        			//sort()按从小到大排序，可参考js高程，接受函数
+        			//cells只定位到td要想获取里面的内容必须用innerHTML,必须转化成数字，否则
+        			//比较的就是字符串
+        			var n1=parseInt(td1.innerHTML);
+        			var n2=parseInt(td2.innerHTML);
+        			return n1-n2;
+        		});
+        		//必须把arr[i]重新加入到表格中去
+        		for(var i=0;i<arr.length;i++){
+        			oTal.tBodies[0].appendChild(arr[i].parentNode);
+        		}	
+        }
+    }
+	</script>
+</head>
+<body>
+	<input type='button' value='rank' id='btn' />
+	<table id='tbl' border="1">
+		<thead>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Age</td>
+			<td>Extra</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>5</td>
+				<td>Rose</td>
+				<td>21</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Yvong</td>
+				<td>19</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Applae</td>
+				<td>68</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Clare</td>
+				<td>18</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Jack</td>
+				<td>23</td>
+				<td></td>
+			</tr>
+			
+		<tbody>
+	</table>
+</body>
+</html>
