@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>分享</title>
+	<style>
+   *{
+      margin:0;
+      padding:0;
+   }
+   #shareLeft{
+   	background:#ccc;
+   	opacity:0.5;
+   	width:150px;
+   	height:300px;
+   	position:absolute;
+   	top:300px;
+   	left:-150px;
+      border-radius:5px;
+   }
+   #shareLeft span{
+   	background:blue;
+   	opacity:0.8;
+   	position:absolute;
+   	top:30px;
+   	width:20px;
+      height:50px;
+   	right:-20px;
+   	color:white;
+      border-radius:0.5;
+   }
+	</style>
+	<script>
+  window.onload=function(){
+     var oDiv=document.getElementById('shareLeft');
+     oDiv.onmouseover=function(){
+         sMove(0);
+         }
+     oDiv.onmouseout=function(){
+         sMove(-150);
+         //为什么这里不用给iTarget赋值的时候加上单位，offsetLeft难道只是偏移的量，差值不是具体
+         //的某个点的值？
+         }
+  };
+      var timer;//这里为什么一定要放在外面，放在里面怎么就不行？
+     function sMove(iTarget){
+         var oDiv=document.getElementById('shareLeft');       
+         var speed;
+         var iTarget;
+         clearInterval(timer);
+         timer=setInterval(function(){
+         if(oDiv.offsetLeft>iTarget){
+            speed=-10;
+         }
+         else{
+            speed=10;
+         };        
+         if(oDiv.offsetLeft==iTarget){
+            clearInterval(timer);
+         }
+         else
+         {
+            oDiv.style.left=oDiv.offsetLeft+speed+'px';
+         }       
+        },30);
+      }  
+	</script>
+</head>
+<body>
+	<div id='shareLeft'>
+		<span>分享</span>
+	</div>
+</body>
+</html>
